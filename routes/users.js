@@ -12,12 +12,12 @@ userRouter.use(bodyParser.json());
 userRouter.route('/')
 .get(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
   User.find({})
-    .then((users) => {
-        res.statusCode = 200;
-        res.setHeader('Content-Type','application/json');
-        res.json(users);
-    }, (err) => next(err))
-    .catch((err) => next(err));
+  .then((users) => {
+      res.statusCode = 200;
+      res.setHeader('Content-Type','application/json');
+      res.json(users);
+  }, (err) => next(err))
+  .catch((err) => next(err));
 });
 
 userRouter.post('/signup', (req,res,next) => {
