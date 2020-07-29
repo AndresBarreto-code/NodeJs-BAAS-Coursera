@@ -32,7 +32,7 @@ dishRouter.route('/')
 })
 .put(authenticate.verifyUser, authenticate.verifyAdmin, (req,res,next) => {
     res.statusCode = 403;
-    res.end(`PUT operation not supported on ${req.baseUrl}`)
+    res.end(`PUT operation not supported on ${req.baseUrl}`);
 })
 .delete(authenticate.verifyUser, authenticate.verifyAdmin, (req,res,next) => {
     Dishes.remove({})
@@ -121,7 +121,7 @@ dishRouter.route('/:dishId/comments')
 })
 .put(authenticate.verifyUser, (req,res,next) => {
     res.statusCode = 403;
-    res.end(`PUT operation not supported on ${req.baseUrl}${req.url}`)
+    res.end(`PUT operation not supported on ${req.baseUrl}${req.url}`);
 })
 .delete(authenticate.verifyUser, authenticate.verifyAdmin, (req,res,next) => {
     Dishes.findById(req.params.dishId)
