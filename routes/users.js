@@ -74,4 +74,24 @@ userRouter.get('/logout', cors.cors, (req,res,next) => {
   }
 });
 
+userRouter.get('/facebook/token', cors.corsWithOptions, passport.authenticate('facebook-token'), (req,res) => {
+  if(req.user){
+    let token = authenticate.getToken({_id: req.user._id});
+    res.statusCode = 200;
+    res.setHeader('Content-Type','application/json');
+    res.json({
+      success: true,
+      token: token,
+      status: 'You are successfully logged in!'
+    });  
+  }else{
+    res.statusCode = 403;
+    res.setHeader('Content-Type','application/json');
+    res.json({
+      success: false,
+      status: 'You are denied'
+    });  
+  }
+});
+
 module.exports = userRouter;
