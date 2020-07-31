@@ -45,8 +45,6 @@ exports.verifyOwner = (req, res, next) => {
     Dishes.findById(req.params.dishId)
     .populate('comments.author')
     .then((dish) => {
-        console.log(dish.comments.id(req.params.commentId));
-        console.log(req.user);
         if(dish != null && dish.comments.id(req.params.commentId) != null){
             if(req.user._id.equals(dish.comments.id(req.params.commentId).author._id)){
                 return next();
